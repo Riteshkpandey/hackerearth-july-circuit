@@ -1,0 +1,58 @@
+Given three integers N,M,K and array of integers a1,a2,...,an.
+Find the value of LCM(a1k,a2k,...,ank) mod M, where LCM means Least Common Multiple.
+
+Input
+
+The first line of the input contains a single integer T denoting the number of test cases(1 ≤ T ≤ 10). 
+The description of T test cases follows.
+First line contains three positive integers N, M, K(1 ≤ N ≤ 3 * 105, 1 ≤ M, K ≤ 109).
+The second line contains N space-separated integers a1,a2,...,an.(1 ≤ ai ≤ 106,1 ≤ i ≤ N).
+
+Output
+For each test case print the value of LCM(a1k,a2k,...,ank) mod M.
+
+SAMPLE INPUT 
+1
+5 20 3
+17 2 9 4 12
+SAMPLE OUTPUT 
+8
+
+
+
+
+
+
+
+***********************************************************************
+this program is run partially , your contribution is welcome
+
+def find_lcm(num1, num2): 
+    if(num1>num2): 
+        num = num1 
+        den = num2 
+    else: 
+        num = num2 
+        den = num1 
+    rem = num % den 
+    while(rem != 0): 
+        num = den 
+        den = rem 
+        rem = num % den 
+    gcd = den 
+    lcm = int(int(num1 * num2)/int(gcd)) 
+    return lcm 
+for _ in range(int(input())):
+    n,m,k=map(int,input().split())
+    a=list(map(int,input().split()))
+
+
+  
+    num1 = a[0] 
+    num2 = a[1] 
+    lcm = find_lcm(num1, num2) 
+      
+    for i in range(2, len(a)): 
+        lcm = find_lcm(lcm, a[i])
+    lcm=lcm*lcm*lcm
+    print(lcm%m)
